@@ -1,10 +1,10 @@
 # react-layout
 
-Dynamic subview layout for React
+Dynamic subview layout for [React](http://facebook.github.io/react/)
 
 ### example
 
-```javascript
+```html
 React = require('react');
 Layout = require('react-layout');
 
