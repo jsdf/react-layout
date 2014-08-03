@@ -1,0 +1,32 @@
+{
+  "name": "react-layout",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/layout",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "cake build"
+  },
+  "author": "James Friend",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/jsdf/react-layout/master/LICENSE"
+    }
+  ],
+  "files": [
+    "lib/"
+  ],
+  "homepage": "https://github.com/jsdf/react-layout",
+  "bugs": "https://github.com/jsdf/react-layout/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jsdf/react-layout.git"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.7.1"
+  },
+  "dependencies": {
+    "xtend": "^4.0.0"
+  }
+}
