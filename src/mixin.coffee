@@ -5,7 +5,7 @@ merge = clone = require('xtend')
 
 DIMENSIONS = ['height','width']
 
-ContextLayoutMixin = 
+LayoutMixin = 
   contextTypes: 
     layoutContext: React.PropTypes.object,
  
@@ -22,6 +22,7 @@ ContextLayoutMixin =
   getLocalLayout: ->
     local = {}
     layoutContext = @getLayoutContext()
+    guardLayoutContext(layoutContext)
 
     def = getLayoutDef(this)
     return local unless def
@@ -31,8 +32,7 @@ ContextLayoutMixin =
 
   applyLayoutToChildren: (children) ->
     parentLayout = @getLayoutContext()
-    unless parentLayout.height? and parentLayout.width?
-      throw new Error('missing parent layout')
+    guardLayoutContext(parentLayout)
 
     # precalc stuff for each dimension
     precalc = DIMENSIONS.reduce((precalc, dim) ->
@@ -74,11 +74,18 @@ getLayoutDef = (component) ->
   height: component.props.layoutHeight
   width: component.props.layoutWidth
 
+guardLayoutContext = (layoutContext) ->
+  assert(layoutContext,'layoutContext')
+  assert(layoutContext.height,'layoutContext.height')
+  assert(layoutContext.width,'layoutContext.width')
+
 layoutIsFixed = (value) -> typeof value is 'number'
 
 layoutIsFlex = (value) -> value is 'flex'
 
 layoutIsInherited = (value) -> value is 'inherit'
 
-module.exports = ContextLayoutMixin
+assert = (value, name) -> throw new Error("missing #{name}") unless value?
+
+module.exports = LayoutMixin
 

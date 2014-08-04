@@ -2,12 +2,12 @@ React = require('react')
 
 merge = require('xtend')
 
-ContextLayoutMixin = require('./mixin')
+LayoutMixin = require('./mixin')
 
 Layout = React.createClass
-  displayName: 'ContextLayout',
+  displayName: 'Layout',
   mixins: [
-    ContextLayoutMixin,
+    LayoutMixin,
   ]
 
   getDefaultProps: ->

@@ -1,3 +1,3 @@
 module.exports = require('./lib/layout');
-module.exports.ContextLayoutMixin = require('./lib/mixin');
+module.exports.LayoutMixin = require('./lib/mixin');
 
