@@ -14,7 +14,7 @@ var AppLayout = React.createClass({
   },
   render: function() {
     var regions = this.props.regions;
-    var sidebarWidth = this.props.sidebarWidth;
+    var sidebarWidth = this.state.sidebarWidth;
 
     var scrollable = {
       'overflow-y': 'scroll',
