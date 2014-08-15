@@ -1,10 +1,10 @@
-# react layout
+# React Layout
 
 Dynamic subview layout for [React](http://facebook.github.io/react/)
 
 Define layout of nested views with fixed and flexible dimensions in a declarative format.
 
-# API
+### API
 
 Props supported on Layout components:
 
