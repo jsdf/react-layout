@@ -19,8 +19,7 @@ Layout = React.createClass
     extraProps = {}
     extraProps.style = merge(style or {}, @getLocalLayout())
 
-    unless @props.innerChild
-      extraProps.children = @applyLayoutToChildren(@props.children)
+    extraProps.children = @applyLayoutToChildren(@props.children)
 
     component(merge(@props, extraProps))
 

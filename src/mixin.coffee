@@ -34,7 +34,7 @@ LayoutMixin =
     parentLayout = @getLayoutContext()
     guardLayoutContext(parentLayout)
 
-    # precalc stuff for each dimension
+    # first pass calculations for each dimension
     precalc = DIMENSIONS.reduce((precalc, dim) ->
       precalc[dim] =
         fixedSum: 0
@@ -42,6 +42,7 @@ LayoutMixin =
       precalc
     , {})
     React.Children.forEach children, (child) ->
+      return unless child
       def = getLayoutDef(child)
       return unless def
       DIMENSIONS.forEach (dim) ->
@@ -52,8 +53,13 @@ LayoutMixin =
        
     # calc and apply layout to each child
     React.Children.map children, (child) ->
-      # the calculated layout for the child,
-      # which will transclude the layoutContext for it and its children
+      # only apply to component-like objects (which have props)
+      return child unless child?.props
+      # skip children with refs (because they can't safely be cloned)
+      return child if child.props.ref?
+      # 'layout' here refers to the calculated layout for the child,
+      # which will inform that child's layoutContext 
+      # (and any of its children which inherit it)
       layout = clone(parentLayout)
       def = getLayoutDef(child)
       if def
@@ -63,14 +69,11 @@ LayoutMixin =
           else if layoutIsFlex(def[dim])
             flexSizeForDimension = (parentLayout[dim] - precalc[dim].fixedSum) / precalc[dim].flexChildren
             layout[dim] = flexSizeForDimension
-          # else if layoutIsInherited(def[dim])
-          #   layout[dim] = parentLayout[dim]
-          # else # dim omitted
 
       React.addons.cloneWithProps child, layoutContext: layout
 
 getLayoutDef = (component) ->
-  return unless component.props.layoutHeight or component.props.layoutWidth
+  return unless component.props?.layoutHeight or component.props?.layoutWidth
   height: component.props.layoutHeight
   width: component.props.layoutWidth
 
