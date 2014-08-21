@@ -73,20 +73,34 @@ LayoutMixin =
       React.addons.cloneWithProps child, layoutContext: layout
 
 getLayoutDef = (component) ->
-  return unless component.props?.layoutHeight or component.props?.layoutWidth
-  height: component.props.layoutHeight
-  width: component.props.layoutWidth
+  return unless hasReactLayout(component)
+
+  def =
+    height: component.props.layoutHeight
+    width: component.props.layoutWidth
+
+  def.height ?= 'inherit'
+  def.width ?= 'inherit'
+
+  def
 
 guardLayoutContext = (layoutContext) ->
   assert(layoutContext,'layoutContext')
   assert(layoutContext.height,'layoutContext.height')
   assert(layoutContext.width,'layoutContext.width')
 
+hasReactLayout = (component) ->
+  # must specify hasReactLayout or have at least one layout prop to be taking part in layout
+  component.props?.layoutHeight or component.props?.layoutWidth or \
+  component.hasReactLayout or component.constructor?.hasReactLayout or component.type?.hasReactLayout
+
 layoutIsFixed = (value) -> typeof value is 'number'
 
 layoutIsFlex = (value) -> value is 'flex'
 
-layoutIsInherited = (value) -> value is 'inherit'
+layoutIsOmitted = (value) -> value is 'omit'
+
+layoutIsInherited = (value) -> value is 'inherit' or not (layoutIsFixed(value) or layoutIsFlex(value) or layoutIsOmitted(value))
 
 assert = (value, name) -> throw new Error("missing #{name}") unless value?
 

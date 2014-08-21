@@ -9,6 +9,8 @@ Layout = React.createClass
   mixins: [
     LayoutMixin,
   ]
+  statics:
+    hasReactLayout: true
 
   getDefaultProps: ->
     component: React.DOM.div
