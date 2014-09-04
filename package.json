@@ -19,6 +19,11 @@
     "mixin.js",
     "lib/"
   ],
+  "keywords": [
+    "react-component",
+    "react",
+    "layout"
+  ],
   "homepage": "https://github.com/jsdf/react-layout",
   "bugs": "https://github.com/jsdf/react-layout/issues",
   "repository": {
