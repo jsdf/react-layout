@@ -35,7 +35,7 @@ run = (executable, args = [], cb) ->
   proc.on        'exit', (status) -> cb(status) if typeof cb is 'function'
 
 test = ->
-  run 'tap', ['test/*.coffee'], (status) ->
+  run 'tap', ['test'], (status) ->
     if status == 0
       log 'pass', green
     else

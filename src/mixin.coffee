@@ -16,7 +16,12 @@ LayoutMixin =
     layoutContext: @getLayoutContext(),
   
   getLayoutContext: ->
-    @props.layoutContext or @context.layoutContext
+    inherited = @props.layoutContext or @context.layoutContext
+    if inherited?
+      inherited
+    else
+     width: if isNumber(@props.layoutWidth) then @props.layoutWidth
+     height: if isNumber(@props.layoutHeight) then @props.layoutHeight
 
   # get layout for this node, assuming appropriate calculations were done by parent
   getLocalLayout: ->
@@ -104,5 +109,6 @@ layoutIsInherited = (value) -> value is 'inherit' or not (layoutIsFixed(value) o
 
 assert = (value, name) -> throw new Error("missing #{name}") unless value?
 
-module.exports = LayoutMixin
+isNumber = (value) -> typeof value is 'number'
 
+module.exports = LayoutMixin

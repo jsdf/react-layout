@@ -4,7 +4,7 @@
   "description": "Dynamic subview layout for React",
   "main": "./lib/layout",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run prepublish && tap test",
     "prepublish": "cake build"
   },
   "author": "James Friend",
@@ -31,7 +31,10 @@
     "url": "git://github.com/jsdf/react-layout.git"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1"
+    "coffee-script": "^1.7.1",
+    "tap": "^0.4.13",
+    "react": "^0.12.0",
+    "node-jsx": "^0.12.0"
   },
   "dependencies": {
     "xtend": "^4.0.0"
