@@ -1,6 +1,6 @@
 {
   "name": "react-layout",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "Dynamic subview layout for React",
   "main": "./lib/layout",
   "scripts": {
