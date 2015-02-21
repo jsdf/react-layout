@@ -4,7 +4,7 @@ Dynamic subview layout for [React](http://facebook.github.io/react/)
 
 Define layout of nested views with fixed and flexible dimensions in a declarative manner.
 
-Why? Because if you still have to support IE8 and 9 then flexbox is off the table,
+Why? Because if you still have to support IE9 and below flexbox is off the table,
 but dynamic flexibly sized elements are necessary for many complex layouts.
 
 ### Example
