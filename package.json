@@ -4,6 +4,8 @@
   "description": "Dynamic subview layout for React",
   "main": "./lib/layout",
   "scripts": {
+    "demo:watch": "watchy -w . -i 'node_modules|build|cache.json' --  npm run demo:build",
+    "demo:build": "browserifyinc -t babelify example/index.js --cachefile example/build/cache.json > example/build/bundle.js",
     "test": "npm run prepublish && tap test",
     "prepublish": "cake build"
   },
@@ -31,10 +33,14 @@
     "url": "git://github.com/jsdf/react-layout.git"
   },
   "devDependencies": {
+    "babel": "^4.4.2",
+    "babelify": "^5.0.3",
+    "browserify-incremental": "^1.5.0",
     "coffee-script": "^1.7.1",
-    "tap": "^0.4.13",
+    "node-jsx": "^0.12.0",
     "react": "^0.12.0",
-    "node-jsx": "^0.12.0"
+    "tap": "^0.4.13",
+    "watchy": "^0.6.0"
   },
   "dependencies": {
     "xtend": "^4.0.0"

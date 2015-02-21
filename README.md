@@ -64,10 +64,11 @@ flow down the layout hierarchy.
 The `Layout` component provided by this module can be parametised with the props
 `layoutWidth` and `layoutHeight`, both which take a `layoutDef` value, which can
 be any of the following:
-- numeric pixel value: will apply a fixed size in pixels for that dimension
+- numeric pixel value eg. `layoutHeight={100}`: will apply a fixed size in pixels 
+  for that dimension
 - `"flex"`: will fill the remaining space left by fixed size sibling `Layout`
-elements  components taking part in layout for that dimension. If there are
-multiple 'flex' components, they will share the available space evenly.
+  elements  components taking part in layout for that dimension. If there are
+  multiple 'flex' components, they will share the available space evenly.
 - `"omit"`: the element will not be given any size value for this dimension
 
 If no `layoutDef` value is provided for a particular dimension, the `Layout`
