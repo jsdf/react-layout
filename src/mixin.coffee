@@ -5,16 +5,16 @@ merge = clone = require('xtend')
 
 DIMENSIONS = ['height','width']
 
-LayoutMixin = 
-  contextTypes: 
-    layoutContext: React.PropTypes.object,
- 
-  childContextTypes: 
+LayoutMixin =
+  contextTypes:
     layoutContext: React.PropTypes.object,
 
-  getChildContext: ->   
+  childContextTypes:
+    layoutContext: React.PropTypes.object,
+
+  getChildContext: ->
     layoutContext: @getLayoutContext(),
-  
+
   getLayoutContext: ->
     inherited = @props.layoutContext or @context.layoutContext
     if inherited?
@@ -55,15 +55,13 @@ LayoutMixin =
           precalc[dim].fixedSum += def[dim]
         else if layoutIsFlex(def[dim])
           precalc[dim].flexChildren++
-       
+
     # calc and apply layout to each child
     React.Children.map children, (child) ->
       # only apply to component-like objects (which have props)
       return child unless child?.props
-      # skip children with refs (because they can't safely be cloned)
-      return child if child.props.ref?
       # 'layout' here refers to the calculated layout for the child,
-      # which will inform that child's layoutContext 
+      # which will inform that child's layoutContext
       # (and any of its children which inherit it)
       layout = clone(parentLayout)
       def = getLayoutDef(child)
@@ -75,7 +73,7 @@ LayoutMixin =
             flexSizeForDimension = (parentLayout[dim] - precalc[dim].fixedSum) / precalc[dim].flexChildren
             layout[dim] = flexSizeForDimension
 
-      React.addons.cloneWithProps child, layoutContext: layout
+      React.cloneElement child, layoutContext: layout
 
 getLayoutDef = (component) ->
   return unless hasReactLayout(component)
