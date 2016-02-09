@@ -1,5 +1,5 @@
 
-React = require('react/addons')
+React = require('react')
 
 merge = clone = require('xtend')
 
