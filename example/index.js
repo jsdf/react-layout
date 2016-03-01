@@ -6,17 +6,16 @@ var VerticalLayout = React.createClass({
   render: function() {
     return (
       <Layout layoutWidth={this.props.width} layoutHeight={this.props.height}>
-        <Layout className="nav" layoutHeight={100} style={{background: 'pink'}}>
+        <Layout className="nav" layoutHeight={100}>
           <div>nav</div>
-          <input type='text' />
         </Layout>
-        <Layout layoutHeight='flex'>
-          <Layout className="sidebar" layoutWidth={300} style={{background: 'darkblue', float: 'left'}}>
+        <Layout layoutHeight="flex">
+          <Layout className="sidebar" layoutWidth={300} style={{float: 'left'}}>
             <div>Sidebar</div>
           </Layout>
-          <Layout className="main" layoutWidth="flex" style={{background: 'lightgreen', float: 'right'}}>
+          <Layout className="main" layoutWidth="flex" style={{float: 'right'}}>
             <div>Main</div>
-            <input type='text' ref={(c) => c.focus()} />
+            <textarea ref={(c) => c && c.focus()} />
           </Layout>
         </Layout>
       </Layout>
@@ -31,7 +30,7 @@ function render() {
       height={window.innerHeight}
     />
   )
-  ReactDOM.render(appView, document.body)
+  ReactDOM.render(appView, document.getElementById('root'))
 }
 
 window.addEventListener('resize', render)
