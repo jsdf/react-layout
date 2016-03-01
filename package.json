@@ -5,7 +5,7 @@
   "main": "./lib/layout",
   "scripts": {
     "demo:watch": "watchy -w . -i 'node_modules|build|cache.json' --  npm run demo:build",
-    "demo:build": "browserifyinc -t babelify example/index.js --cachefile example/build/cache.json > example/build/bundle.js",
+    "demo:build": "mkdir -p example/build && browserifyinc -t babelify example/index.js --cachefile example/build/cache.json > example/build/bundle.js",
     "test": "npm run prepublish && tap test",
     "prepublish": "cake build"
   },
