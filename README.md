@@ -8,8 +8,8 @@ Why? If you still have to support IE9 and below, flexbox is off the table. Howev
 
 ### Example
 ```js
-var React = require('react');
-var Layout = require('react-layout');
+var React = require('react')
+var Layout = require('react-layout')
 var AppViews = require('./app-views')
 
 var AppLayout = React.createClass({
